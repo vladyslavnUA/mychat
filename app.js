@@ -7,7 +7,8 @@ const io = require('socket.io')(server);
 
 // Socket.io implementation
 io.on('connection', (socket) => {
-    console.log('New user connected!')
+    // this is read on any new socket connection
+    require('./sockets/chat.js')(io, socket);
 })
 
 const exphbs  = require('express-handlebars');
