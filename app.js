@@ -5,10 +5,12 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+let onlineUsers = {};
+
 // Socket.io implementation
 io.on('connection', (socket) => {
     // this is read on any new socket connection
-    require('./sockets/chat.js')(io, socket);
+    require('./sockets/chat.js')(io, socket, onlineUsers);
 })
 
 const exphbs  = require('express-handlebars');
